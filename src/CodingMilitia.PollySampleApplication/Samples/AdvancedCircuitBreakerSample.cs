@@ -24,7 +24,7 @@ namespace CodingMilitia.PollySampleApplication.Samples
                         Console.WriteLine("Error was {0}", ex.GetType().Name);
                     },
                     () => Console.WriteLine("First execution after circuit break succeeded, circuit is reset."),
-                    () => Console.WriteLine("Half open state, transitioning from closed.")
+                    () => Console.WriteLine("Half open state, transitioning from open.")
                    );
 
             Console.WriteLine("|{0}|", nameof(breakCircuitWhen75PercentFailuresIn5ExecutionsFailuresPolicy));
