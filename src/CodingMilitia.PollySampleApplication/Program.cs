@@ -20,13 +20,14 @@ namespace CodingMilitia.PollySampleApplication
         private static async Task MainAsync(string[] args)
         {
             var samples = new AbstractSample[]
-                        {
+            {
                 new RetryNTimesSample(),
                 new RetryAndWaitSample(),
                 new RetryAndWaitUsingTimeSpanProviderSample(),
                 new CircuitBreakerSample(),
                 new AdvancedCircuitBreakerSample(),
-                new ExecuteAndCaptureSample()
+                new ExecuteAndCaptureSample(),
+                new BulkheadSample()
             };
 
 
