@@ -14,10 +14,10 @@ namespace CodingMilitia.PollySampleApplication.Samples
         public override async Task RunAsync()
         {
             var bulkheadPolicy = Policy.BulkheadAsync(2, 2);
-            await FirstPairSucceedsSecondPairSucceedsAfterWaitFifthFails(bulkheadPolicy);
+            await FirstPairSucceedsSecondPairSucceedsAfterWaitFifthFailsAsync(bulkheadPolicy);
         }
 
-        private async Task FirstPairSucceedsSecondPairSucceedsAfterWaitFifthFails(Policy bulkheadPolicy)
+        private async Task FirstPairSucceedsSecondPairSucceedsAfterWaitFifthFailsAsync(Policy bulkheadPolicy)
         {
             Console.WriteLine("----------- First pair succeeds second pair succeeds after wait fifth fails -----------");
 

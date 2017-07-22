@@ -21,11 +21,11 @@ namespace CodingMilitia.PollySampleApplication.Samples
             Console.WriteLine("|{0}|", nameof(retryTwoTimesPolicy));
 
 
-            await FailAfterSecondRetry(retryTwoTimesPolicy);
-            await SucceeOnSecondRetry(retryTwoTimesPolicy);
+            await FailAfterSecondRetryAsync(retryTwoTimesPolicy);
+            await SucceeOnSecondRetryAsync(retryTwoTimesPolicy);
         }
 
-        private async Task FailAfterSecondRetry(Policy retryTwoTimesPolicy)
+        private async Task FailAfterSecondRetryAsync(Policy retryTwoTimesPolicy)
         {
             Console.WriteLine("----------- Fails after second retry -----------");
             var service = new FailNTimesStuffService(3);
@@ -42,7 +42,7 @@ namespace CodingMilitia.PollySampleApplication.Samples
             }
         }
 
-        private async Task SucceeOnSecondRetry(Policy retryTwoTimesPolicy)
+        private async Task SucceeOnSecondRetryAsync(Policy retryTwoTimesPolicy)
         {
             Console.WriteLine("----------- Succeeds on second retry -----------");
             var service = new FailNTimesStuffService(2);

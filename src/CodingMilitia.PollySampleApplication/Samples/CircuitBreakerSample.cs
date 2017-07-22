@@ -25,10 +25,10 @@ namespace CodingMilitia.PollySampleApplication.Samples
 
             Console.WriteLine("|{0}|", nameof(breakCircuitAfterTwoFailuresPolicy));
 
-            await SucceedsAfterFirstCircuitBreak(breakCircuitAfterTwoFailuresPolicy);
+            await SucceedsAfterFirstCircuitBreakAsync(breakCircuitAfterTwoFailuresPolicy);
         }
 
-        private async Task SucceedsAfterFirstCircuitBreak(Policy breakCircuitAfterTwoFailuresPolicy)
+        private async Task SucceedsAfterFirstCircuitBreakAsync(Policy breakCircuitAfterTwoFailuresPolicy)
         {
 
             Console.WriteLine("----------- Succeeds after first circuit break-----------");

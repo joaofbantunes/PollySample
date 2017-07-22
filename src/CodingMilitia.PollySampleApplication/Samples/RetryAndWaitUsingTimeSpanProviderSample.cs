@@ -24,8 +24,8 @@ namespace CodingMilitia.PollySampleApplication.Samples
 
             Console.WriteLine("|{0}|", nameof(retryAndWaitUsingTimeSpanProviderPolicy));
 
-            await FailAfterAllWaits(retryAndWaitUsingTimeSpanProviderPolicy);
-            await SucceedAfterWaitingThreeTimesRetry(retryAndWaitUsingTimeSpanProviderPolicy);
+            await FailAfterAllWaitsAsync(retryAndWaitUsingTimeSpanProviderPolicy);
+            await SucceedAfterWaitingThreeTimesRetryAsync(retryAndWaitUsingTimeSpanProviderPolicy);
         }
     }
 }

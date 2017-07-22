@@ -22,11 +22,11 @@ namespace CodingMilitia.PollySampleApplication.Samples
 
             Console.WriteLine("|{0}|", nameof(retryAndWaitPolicy));
 
-            await FailAfterAllWaits(retryAndWaitPolicy);
-            await SucceedAfterWaitingThreeTimesRetry(retryAndWaitPolicy);
+            await FailAfterAllWaitsAsync(retryAndWaitPolicy);
+            await SucceedAfterWaitingThreeTimesRetryAsync(retryAndWaitPolicy);
         }
 
-        protected async Task FailAfterAllWaits(Policy retryAndWaitPolicy)
+        protected async Task FailAfterAllWaitsAsync(Policy retryAndWaitPolicy)
         {
             Console.WriteLine("----------- Fails after all waits -----------");
             var service = new FailForSomeTimeStuffService(TimeSpan.FromSeconds(10));
@@ -43,7 +43,7 @@ namespace CodingMilitia.PollySampleApplication.Samples
             }
         }
 
-        protected async Task SucceedAfterWaitingThreeTimesRetry(Policy retryAndWaitPolicy)
+        protected async Task SucceedAfterWaitingThreeTimesRetryAsync(Policy retryAndWaitPolicy)
         {
             Console.WriteLine("----------- Succeeds after waiting three times-----------");
             var service = new FailForSomeTimeStuffService(TimeSpan.FromSeconds(8));

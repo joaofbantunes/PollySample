@@ -15,11 +15,11 @@ namespace CodingMilitia.PollySampleApplication.Samples
 
             Console.WriteLine("|{0}|", nameof(executeAndCapturePolicy));
 
-            await PrintSuccessResult(executeAndCapturePolicy);
-            await PrintFailedResult(executeAndCapturePolicy);
+            await PrintSuccessResultAsync(executeAndCapturePolicy);
+            await PrintFailedResultAsync(executeAndCapturePolicy);
         }
 
-        private async Task PrintSuccessResult(Policy executeAndCapturePolicy)
+        private async Task PrintSuccessResultAsync(Policy executeAndCapturePolicy)
         {
             Console.WriteLine("----------- Prints successful result -----------");
             var service = new FailNTimesStuffService(1);
@@ -30,7 +30,7 @@ namespace CodingMilitia.PollySampleApplication.Samples
             Console.WriteLine("{0}: {1}", nameof(policyResult.Result), policyResult.Result);
         }
 
-        private async Task PrintFailedResult(Policy executeAndCapturePolicy)
+        private async Task PrintFailedResultAsync(Policy executeAndCapturePolicy)
         {
             Console.WriteLine("----------- Prints failed result -----------");
             var service = new FailNTimesStuffService(2);
