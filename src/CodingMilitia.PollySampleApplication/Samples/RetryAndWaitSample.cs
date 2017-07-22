@@ -7,7 +7,7 @@ namespace CodingMilitia.PollySampleApplication.Samples
 {
     public class RetryAndWaitSample : AbstractSample
     {
-        public override void Run()
+        public override async Task RunAsync()
         {
             var retryAndWaitPolicy = Policy
                .Handle<BoomerangThrowFailedException>()
@@ -22,35 +22,35 @@ namespace CodingMilitia.PollySampleApplication.Samples
 
             Console.WriteLine("|{0}|", nameof(retryAndWaitPolicy));
 
-            FailAfterAllWaits(retryAndWaitPolicy);
-            SucceedAfterWaitingThreeTimesRetry(retryAndWaitPolicy);
+            await FailAfterAllWaits(retryAndWaitPolicy);
+            await SucceedAfterWaitingThreeTimesRetry(retryAndWaitPolicy);
         }
 
-        protected void FailAfterAllWaits(Policy retryAndWaitPolicy)
+        protected async Task FailAfterAllWaits(Policy retryAndWaitPolicy)
         {
             Console.WriteLine("----------- Fails after all waits -----------");
             var service = new FailForSomeTimeStuffService(TimeSpan.FromSeconds(10));
             try
             {
-                Task.WaitAll(retryAndWaitPolicy.ExecuteAsync(async () =>
+                await retryAndWaitPolicy.ExecuteAsync(async () =>
                 {
                     await ThrowBoomerangAsync(service);
-                }));
+                });
             }
-            catch (AggregateException ae) when (ae.InnerException is BoomerangThrowFailedException)
+            catch (BoomerangThrowFailedException)
             {
                 Console.WriteLine("-> Failed more times than specified waits.");
             }
         }
 
-        protected void SucceedAfterWaitingThreeTimesRetry(Policy retryAndWaitPolicy)
+        protected async Task SucceedAfterWaitingThreeTimesRetry(Policy retryAndWaitPolicy)
         {
             Console.WriteLine("----------- Succeeds after waiting three times-----------");
             var service = new FailForSomeTimeStuffService(TimeSpan.FromSeconds(8));
-            Task.WaitAll(retryAndWaitPolicy.ExecuteAsync(async () =>
+            await retryAndWaitPolicy.ExecuteAsync(async () =>
             {
                 await ThrowBoomerangAsync(service);
-            }));
+            });
         }
     }
 }

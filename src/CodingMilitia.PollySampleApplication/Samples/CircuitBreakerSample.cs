@@ -8,7 +8,7 @@ namespace CodingMilitia.PollySampleApplication.Samples
 {
     public class CircuitBreakerSample : AbstractSample
     {
-        public override void Run()
+        public override async Task RunAsync()
         {
             var breakCircuitAfterTwoFailuresPolicy = Policy
               .Handle<BoomerangThrowFailedException>()
@@ -25,10 +25,10 @@ namespace CodingMilitia.PollySampleApplication.Samples
 
             Console.WriteLine("|{0}|", nameof(breakCircuitAfterTwoFailuresPolicy));
 
-            SucceedsAfterFirstCircuitBreak(breakCircuitAfterTwoFailuresPolicy);
+            await SucceedsAfterFirstCircuitBreak(breakCircuitAfterTwoFailuresPolicy);
         }
 
-        private void SucceedsAfterFirstCircuitBreak(Policy breakCircuitAfterTwoFailuresPolicy)
+        private async Task SucceedsAfterFirstCircuitBreak(Policy breakCircuitAfterTwoFailuresPolicy)
         {
 
             Console.WriteLine("----------- Succeeds after first circuit break-----------");
@@ -37,17 +37,17 @@ namespace CodingMilitia.PollySampleApplication.Samples
             {
                 try
                 {
-                    Task.WaitAll(breakCircuitAfterTwoFailuresPolicy.ExecuteAsync(async () =>
+                    await breakCircuitAfterTwoFailuresPolicy.ExecuteAsync(async () =>
                     {
                         await ThrowBoomerangAsync(service);
-                    }));
+                    });
                 }
-                catch (AggregateException ae) when (ae.InnerException is BrokenCircuitException)
+                catch (BrokenCircuitException)
                 {
                     Console.WriteLine("Broken circuit exception, must wait until circuit is closed again.");
-                    Task.WaitAll(Task.Delay(1000));
+                    await Task.Delay(1000);
                 }
-                catch (AggregateException ae) when (ae.InnerException is BoomerangThrowFailedException)
+                catch (BoomerangThrowFailedException)
                 {
                     Console.WriteLine("Failed an execution.");
                 }

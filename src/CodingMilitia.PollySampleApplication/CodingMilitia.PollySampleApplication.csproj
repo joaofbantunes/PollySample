@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp1.0</TargetFramework>
     <AssemblyName>CodingMilitia.PollySampleApplication</AssemblyName>
@@ -11,9 +10,7 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Polly" Version="4.3.0" />
+    <PackageReference Include="Polly" Version="5.2.0" />
   </ItemGroup>
-
 </Project>

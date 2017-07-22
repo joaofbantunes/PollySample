@@ -14,8 +14,13 @@ namespace CodingMilitia.PollySampleApplication
         public static void Main(string[] args)
         {
 
+            MainAsync(args).GetAwaiter().GetResult();
+        }
+
+        private static async Task MainAsync(string[] args)
+        {
             var samples = new AbstractSample[]
-            {
+                        {
                 new RetryNTimesSample(),
                 new RetryAndWaitSample(),
                 new RetryAndWaitUsingTimeSpanProviderSample(),
@@ -30,7 +35,7 @@ namespace CodingMilitia.PollySampleApplication
                 int sampleIndexToRun = 0;
                 if (int.TryParse(args[0], out sampleIndexToRun) && sampleIndexToRun >= 0 && sampleIndexToRun < samples.Length)
                 {
-                    samples[sampleIndexToRun].Run();
+                    await samples[sampleIndexToRun].RunAsync();
                 }
                 else
                 {
@@ -41,9 +46,9 @@ namespace CodingMilitia.PollySampleApplication
             {
                 foreach (var sample in samples)
                 {
-                    sample.Run();
+                    await sample.RunAsync();
                 }
             }
-        }   
+        }
     }
 }

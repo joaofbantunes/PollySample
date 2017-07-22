@@ -8,7 +8,7 @@ namespace CodingMilitia.PollySampleApplication.Samples
 {
     public abstract class AbstractSample
     {
-        public abstract void Run();
+        public abstract Task RunAsync();
         protected async Task ThrowBoomerangAsync(IStuffService service)
         {
             Console.WriteLine("Throwing...");

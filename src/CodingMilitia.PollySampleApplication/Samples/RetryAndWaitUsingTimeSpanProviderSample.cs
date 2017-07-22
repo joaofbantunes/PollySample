@@ -1,12 +1,13 @@
 ﻿using CodingMilitia.PollySampleApplication.Service;
 using Polly;
 using System;
+using System.Threading.Tasks;
 
 namespace CodingMilitia.PollySampleApplication.Samples
 {
     public class RetryAndWaitUsingTimeSpanProviderSample : RetryAndWaitSample
     {
-        public override void Run()
+        public override async Task RunAsync()
         {
             var retryTimeSpanMap = new TimeSpan?[] { null, TimeSpan.FromSeconds(4), TimeSpan.FromSeconds(3), TimeSpan.FromSeconds(2) };
             var retryAndWaitUsingTimeSpanProviderPolicy = Policy
@@ -23,8 +24,8 @@ namespace CodingMilitia.PollySampleApplication.Samples
 
             Console.WriteLine("|{0}|", nameof(retryAndWaitUsingTimeSpanProviderPolicy));
 
-            FailAfterAllWaits(retryAndWaitUsingTimeSpanProviderPolicy);
-            SucceedAfterWaitingThreeTimesRetry(retryAndWaitUsingTimeSpanProviderPolicy);
+            await FailAfterAllWaits(retryAndWaitUsingTimeSpanProviderPolicy);
+            await SucceedAfterWaitingThreeTimesRetry(retryAndWaitUsingTimeSpanProviderPolicy);
         }
     }
 }
