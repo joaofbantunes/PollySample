@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0E340E14-8C7B-4635-8E2F-DDD560F6F169}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CodingMilitia.PollySampleApplication", "src\CodingMilitia.PollySampleApplication\CodingMilitia.PollySampleApplication.xproj", "{3E8A8E85-08AC-48D7-A94C-A13708916490}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CodingMilitia.PollySampleApplication", "src\CodingMilitia.PollySampleApplication\CodingMilitia.PollySampleApplication.csproj", "{3E8A8E85-08AC-48D7-A94C-A13708916490}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
